@@ -1,1 +1,107 @@
-c:\Users\FRGL\projects\helloworld\helloworld.c
+#include <stdio.h>
+#include <math.h>
+#include <windows.h>
+int p=0;
+int main (){
+    printf("Al momento 5 programmini:\n");
+    printf("                1)Programma che scrive le potenze del due fino all'overflow\n");
+    printf("                2)Programma che scrive i numeri pari minori o uguali a un intero dato\n");
+    printf("                3)Programma che calcola il fattoriale di un numero\n");
+    printf("                4)Convertitore da base 10 a binario naturale in 32bit\n");
+    printf("                5)Convertitore da binario naturale a 32bit a base 10\n");
+    printf("\n                  ^^^^ Scegliere un programma ^^^^\n");
+    scanf("%d", &p);
+/*programma 1 potenze del due fino all'overflow*/
+if (p==1)
+    {
+        printf("Hai scelto 1)Programma che scrive le potenze del due fino all'overflow\n");
+        int i=1, n=1;
+        while (n<=32) /*2^30 è il massimo*/
+        {
+            i=i*2; /*raddoppia sempre il numero*/
+            printf("2 alla %d è %d\n", n, i); 
+            n++;      /*essendo in c2 si fermerà alla 2^30esima potenza*/
+        }
+    return(0);
+    }
+/*programma 2 numeri pari minori di un intero*/
+if (p==2)
+    {
+        printf("Hai scelto 2)Programma che scrive i numeri pari minori o uguali a un intero dato\n");
+        int N, pari = 0;
+        printf("dammi un intero positivo:\n");
+        scanf("%d", &N);
+        printf("ecco i numeri pari minori o uguali a %d\n", N);
+        while (pari<=N)
+        {
+            printf("%d\n", pari); /*stampa il numero pari più basso*/
+            pari += 2; /*incrementa al successivo numero pari*/
+        }
+    return(0);   
+    }
+/*programma 3 fattoriale*/  
+if (p==3)
+    {
+        printf("Hai scelto 3)Programma che calcola il fattoriale di un numero\n");
+        int n, m, fatt=1;
+        printf("inserisci n:\n");
+        scanf("%d", &n);
+        if (n<0) /*da errore se il fattoriale non è calcolabile*/
+        {
+            printf("numero negativo, fattoriale indefinito\n");
+        }
+        else {
+            m = n; /*assegna una variabile ausiliaria per l'output bellino*/
+            while (m>1)
+            {
+                fatt=fatt*m; /*calcola questo passaggio del fattoriale*/
+                --m; /*conta quanti passaggi del fattoriale mancano*/
+            }
+        printf("%d! = %d\n", n, fatt);
+        }
+    return(0);
+    }
+/*programma 4 convertitore a binario*/
+if (p==4)
+{
+    printf("Hai scelto 4)Convertitore da base 10 a binario naturale in 32bit\n");
+    int n, r, pot, esp=0, som=0;
+    printf("Inserisci il numero decimale da convertire: ");
+    scanf("%d", &n);
+    while (n>0) /*quando n è uguale a 0 avrò già salvato l'ultimo bit nel ciclo precedente*/
+    {
+        r = n % 2; /*calcolo il resto della divisione (prima di farla obv)*/
+        pot = pow(10, esp); /*calcolo in quale casella di potenza di 10 assegnare la cifra*/
+        som += (r * pot); /*aggiungo la cifra alla somma*/
+        n/=2; /*divido il numero per 2*/
+        esp++; /*incremento la potenza per la casella successiva*/
+    }
+    printf("Il numero convertito e' %d", som);
+}
+if (p==5)
+{
+    printf("Hai scelto 5)Convertitore da binario naturale a 32bit a base 10\n");
+    int n, r, c, esp=0, som=0; /*n- numero in bin, r- resto (pari, dispari), c- cifra da stampare*/
+    printf("Inserisci il numero in binario naturale: ");
+    scanf("%d", &n);
+    while (n!=0) /*devo leggere le cifre da dx a sx*/
+    {
+        r=n%2; /*se è pari l'ultima cifra è zero, se è dispari uno*/
+        c=r*pow(2, esp); /*assegnamo la corretta casella alla prima cifra e alle successive in base alla potenza di 10*/
+        som+=c; /*aggiungiamo subito al numero quello appena processato*/
+        esp++; /*incrementiamo la casella per la prossima cifra*/
+        n/=10; /*togliamo la cifra più a dx appena processata*/
+    }
+    printf("Il numero convertito e' %d", som); /*quando la divisione porta a zero posso stampare perchè non ho più cifre*/
+    
+
+    
+}
+
+
+if (p>5)
+{
+    printf("programma inesistente\n");    
+} 
+Sleep (5000);
+}
