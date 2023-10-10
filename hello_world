@@ -92,14 +92,15 @@ if (p==5)
         esp++; /*incrementiamo la casella per la prossima cifra*/
         n/=10; /*togliamo la cifra più a dx appena processata*/
     }
-    printf("Il numero convertito e' %d", som); /*quando la divisione porta a zero posso stampare perchè non ho più cifre*/
-    
-
-    
+    printf("Il numero convertito e' %d", som); /*quando la divisione porta a zero posso stampare perchè non ho più cifre*/   
+}
+if (p==6)
+{
+    printf("Hello\n");
 }
 
 
-if (p>5)
+if (p>6)
 {
     printf("programma inesistente\n");    
 } 
