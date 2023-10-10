@@ -99,7 +99,6 @@ if (p==6)
     printf("Hello\n");
 }
 
-
 if (p>6)
 {
     printf("programma inesistente\n");    
