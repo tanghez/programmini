@@ -9,6 +9,8 @@ int main (){
     printf("                3)Programma che calcola il fattoriale di un numero\n");
     printf("                4)Convertitore da base 10 a binario naturale in 32bit\n");
     printf("                5)Convertitore da binario naturale a 32bit a base 10\n");
+    printf("                6)Pao\n");
+    printf("                7)Calcolatore max, min, med di una sequenza di numeri\n");
     printf("\n                  ^^^^ Scegliere un programma ^^^^\n");
     scanf("%d", &p);
 /*programma 1 potenze del due fino all'overflow*/
@@ -128,24 +130,31 @@ if (p==6)
     }
 }
 /*programma 7 max min e med con array*/
-if (p==7)
+if (p==8)
 {
     printf("Hai scelto 7)Programma che calcola max min e med dei numeri inseriti\n");
-    int dim=1, max, min, i=0, v[dim];
-    float med=0.0f;
+    int dim=1, max, min, ans=0, i=0, v[100]; /*dim= dimensione dell'array, numero di cifre*/
+    char q='n';
+    float med=0.0f; /*media float per fare la divisione corretta*/
     printf("scrivi una sequenza di interi, scrivi -1 per terminare:\n");
-    for ( i = 0; i < dim; i++)
+    while (ans!=1)/*finchè ans==0 (la risposta non è si) il ciclo continua*/
     {
-        scanf("%d", &v[i]);
-        dim++;
-        if (v[i]==-1)
+        scanf("%d", &v[i]); /*scannerizza i numeri di input per ogni casella ennesima*/
+        if (v[i]==-1) /*rileva se è stato inserito -1*/
         {
-            dim-=2;
-        }
+            printf("vuoi terminare la sequenza di numeri? Y/N\n"); /*conferma la volontà di terminare*/
+            scanf(" %c", &q); /*leggere la risposta, aggiungo lo spazio prima del %c per non leggere eventuali caratteri tipo newline*/
+            if (q=='y' || q=='Y') /*se è affermativa evita il ciclo successivo, se è negativa aggiunge l'uno alla stringa e ripete il ciclo*/
+            {
+                ans=1; /*segna la risposta affermativa e termina il ciclo*/
+            }
+        } 
+        i++; 
     }
-    max=v[0];
+    dim-=2; /*quando il ciclo viene terminato cancella l'ultimo -1 e la casella creata in più (vuota) per l'eventuale ciclo successivo*/
+    max=v[0]; /* il max viene assegnato al primo valore (tanto li scanneriziamo tutti)*/
     min=v[0];
-    for ( i = 0; i < dim; i++)
+    for ( i = 0; i < dim; i++) /*assegna max e min facendo passare tutti i valori inseriti*/
     {
         if (max<v[i])
         {
@@ -155,14 +164,57 @@ if (p==7)
         {
             min=v[i];
         }  
-        med=med+v[i];      
+        med=med+v[i]; /*aggiunge alla somma dei numeri il numero ennesimo (avremo la somma di tutti i numeri)*/ 
     }
-    med=med/dim;
-    printf("il max è: %d, il min è: %d, la media è %f", max, min, med);    
+    med=med/dim; /*calcola la media*/
+    printf("il max e': %d, il min e': %d, la media e' %f", max, min, med);    
 } 
-if (p>7 || p<0)
+/*programma 7 max min e med senza array*/
+if (p==7)
+{
+    int n=0, i=0, ans=0, max, min, som=0;
+    char q;
+    float med;
+    printf("Scrivi una sequenza di numeri, scrivi -1 per terminare la sequenza:\n");
+    while (ans!=1)
+    {
+        scanf("%d", &n);
+        if (n==-1)
+        {
+            printf("<<  Vuoi terminare la sequenza o considerare il -1 nella sequenza?  >>\n<<    Y/N --- Y per terminare / N per considerare questo -1  >>\n");
+            scanf(" %c", &q);
+            if (q=='y' || q=='Y') /*se la risposta è affermativa rende ans uguale a 1*/
+            {
+                ans=1; /*ans uguale a 1 fermerà il prossimo if e quindi considererà -1 come valore non valido (se scelgo no verrà considerato il -1)*/
+            } 
+        }
+        if (ans==0)
+        {
+            if (i==0) /*se è il primo ciclo assegna max e min al primo numero*/
+            {
+                max=n;
+                min=n;
+            }
+            if (n>max) /*se n è maggiore del max diventa il max*/
+            {
+                max=n;
+            }
+            if (n<min) /*se ne è minore del min diventa il min*/
+            {
+                min=n;
+            }
+            i++; /*conta quanti cicli validi (quelli con ans==o) ho fatto*/
+            som+=n; /*aggiunge il valori validi alla media*/    
+            //printf("i vale %d, som vale %d, max vale %d, min vale %d\n", i, som, max, min);     
+        }              
+    }
+    med=(float)som/i;
+    printf("Il max e' %d, il min e' %d, la med e' %f", max, min, med);    
+}
+
+if (p>8 || p<0)
 {
     printf("programma inesistente");
 }
-Sleep (5000);
+Sleep (500);
 }
