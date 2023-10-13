@@ -96,16 +96,39 @@ if (p==5)
 }
 if (p==6)
 {
-<<<<<<< HEAD
-   ;
-=======
-   /*quello per paola*/;
->>>>>>> fa03e93a20488cf6d5d3e84cac48295c4b99582e
+    int i, j, n; /*i=altezza(numero di righe), j=variabile contatore, n=larghezza c*/
+    printf("seleziona la dimensione(numero intero): \n");
+    scanf("%d", &n);
+    printf("\n");
+    for (i = n / 2; i <= n; i += 2) { /*parte superiore del cuore, i determina l'altezza del cuore(quante righe) i+=2 fa stampare solo le righe dispari del cuore*/
+        for (j = 1; j < n - i; j += 2) { /*stampa il numero di spazi vuoti a sinistra (aumenta nella parte alta)*/
+            printf(" ");
+        }
+        for (j = 1; j <= i; j++) { /*stampa i punti a sx di ogni riga e aumenta di 1 finchè non è uguale a i */
+            printf("*");
+        }
+        for (j = 1; j <= n - i; j++) {/*determina il numero di spazi vuoti tra i due lati del cuore*/
+            printf(" ");
+        }
+        for (j = 1; j <= i; j++) { /*determina il numero di punti a dx di ogni riga*/
+            printf("*");
+        }
+        printf("\n");
+    }
+    for (i = n; i >= 1; i--) { /*parte inferiore del cuore*/
+        for (j = i; j < n; j++) { /*numero di spazi vuoti prima delle righe*/
+            printf(" ");
+        }
+        for (j = 1; j <= (i * 2) - 1; j++) { /*numero di punti nella parte inferiore*/
+            printf("*");
+        }
+        printf("\n");
+    }
 }
 
-if (p>7)
+if (p==7)
 {
-    printf("programma inesistente\n");    
+    ;    
 } 
 Sleep (5000);
 }
