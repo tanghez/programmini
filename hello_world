@@ -128,7 +128,36 @@ if (p==6)
 
 if (p==7)
 {
-    ;    
+    printf("Programma che calcola max min e med dei numeri inseriti\n");
+    int dim=1, max, min, i=0, v[dim];
+    float med=0.0f;
+    printf("scrivi una sequenza di interi, scrivi -1 per terminare:\n");
+    for ( i = 0; i < dim; i++)
+    {
+        scanf("%d", &v[i]);
+        dim++;
+        if (v[i]==-1)
+        {
+            dim-=2;
+        }
+    }
+    max=v[0];
+    min=v[0];
+    for ( i = 0; i < dim; i++)
+    {
+        if (max<v[i])
+        {
+            max=v[i];
+        }
+        if (min>v[i])
+        {
+            min=v[i];
+        }  
+        med=med+v[i];      
+    }
+    med=med/dim;
+    printf("il max è: %d, il min è: %d, la media è %f", max, min, med); 
+        
 } 
 Sleep (5000);
 }
