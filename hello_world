@@ -187,7 +187,7 @@ if (p==7)
             {
                 ans=1; /*ans uguale a 1 fermerà il prossimo if e quindi considererà -1 come valore non valido (se scelgo no verrà considerato il -1)*/
             } 
-            printf("<<  Hai scelto di continuare, scrivi ulteriori numeri, -1 per terminare:   >>");
+            printf("<<  Hai scelto di continuare, scrivi ulteriori numeri, scrivi nuovamente -1 per terminare:   >>\n");
         }
         if (ans==0)
         {
