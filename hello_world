@@ -130,7 +130,7 @@ if (p==6)
     }
 }
 /*programma 7 max min e med con array*/
-if (p==8)
+if (p==7)
 {
     printf("Hai scelto 7)Programma che calcola max min e med dei numeri inseriti\n");
     int dim=1, max, min, ans=0, i=0, v[100]; /*dim= dimensione dell'array, numero di cifre*/
@@ -169,8 +169,8 @@ if (p==8)
     med=med/dim; /*calcola la media*/
     printf("il max e': %d, il min e': %d, la media e' %f", max, min, med);    
 } 
-/*programma 7 max min e med senza array*/
-if (p==7)
+/*programma 8 max min e med senza array*/
+if (p==8)
 {
     int n=0, i=0, ans=0, max, min, som=0;
     char q;
@@ -212,8 +212,28 @@ if (p==7)
     med=(float)som/i;
     printf("Il max e' %d, il min e' %d, la med e' %f", max, min, med);    
 }
+/*programma 8 inversione stringa di input*/
+if (p==9)
+{
+    printf("Hai scelto programma 8)Programma che inverte una serie di valori\n");
+    int A[100], i=0, n=0;
+    printf("Quanti valori vuoi inserire?\n");
+    scanf("%d", &n);
+    printf("Scrivi i valori: \n");
+    while (i<n)
+    {
+        scanf("%d", &A[i]); /*legge il valore e lo mette nella i-esima casella*/
+        i++; /*aumenta la casella*/
+    }
+    printf("I numeri in ordine inverso sono: ");
+    while (n>=1) /*parte dal numero massimo di caselle e scende fino all'ultima (la 0)*/
+    {
+        printf("%d-", A[n-1]); /*stampa la n-1 per evitare di stampare il carattere vuoto posto nella casella dopo l'ultima inserita*/
+        n--; /*scende fino ad arrivare alla prima casella inserita*/
+    }    
+}
 
-if (p>8 || p<0)
+if (p>9 || p<0)
 {
     printf("programma inesistente");
 }
