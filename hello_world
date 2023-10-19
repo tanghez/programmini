@@ -10,7 +10,11 @@ int main (){
     printf("                4)Convertitore da base 10 a binario naturale in 32bit\n");
     printf("                5)Convertitore da binario naturale a 32bit a base 10\n");
     printf("                6)Pao\n");
-    printf("                7)Calcolatore max, min, med di una sequenza di numeri\n");
+    printf("                7)Calcolatore max, min, med di una sequenza di numeri (array)\n");
+    printf("                8)Programma che calcola max min e med dei numeri inseriti (no-array)\n");
+    printf("                9)Programma che inverte una serie di valori\n");
+    printf("                10)Programma per sommare due matrici di dimensioni e valori dati\n");
+    printf("                11)Programma che moltiplica due matrici di dimensioni e valori dati\n");
     printf("\n                  ^^^^ Scegliere un programma ^^^^\n");
     scanf("%d", &p);
 /*programma 1 potenze del due fino all'overflow*/
@@ -172,6 +176,7 @@ if (p==7)
 /*programma 8 max min e med senza array*/
 if (p==8)
 {
+    printf("Hai scelto programma 8)Programma che calcola max min e med di una serie di valori (no-array)\n");
     int n=0, i=0, ans=0, max, min, som=0;
     char q;
     float med;
@@ -215,7 +220,7 @@ if (p==8)
 /*programma 8 inversione stringa di input*/
 if (p==9)
 {
-    printf("Hai scelto programma 8)Programma che inverte una serie di valori\n");
+    printf("Hai scelto programma 9)Programma che inverte una serie di valori\n");
     int A[100], i=0, n=0;
     printf("Quanti valori vuoi inserire?\n");
     scanf("%d", &n);
@@ -232,8 +237,91 @@ if (p==9)
         n--; /*scende fino ad arrivare alla prima casella inserita*/
     }    
 }
+/*programma somma di due matrici con qualche controllo variabili*/
+if (p==10)
+{
+    printf("Hai scelto programma 10)Programma che somme due matrici di dimensioni date\n");
+    int m=0, n=0, ma, na, mb, nb, i=0, j=0; /*i indica il numero di colonna sulla quale sto agendo e j il numero di riga*/
+    printf("Inserisci le dimensioni della prima matrice A --> Mat(m,n):\n");
+    printf("Inserisci m di A: \n");
+    scanf("%d", &ma);    
+    printf("Inserisci n di A: \n");
+    scanf("%d", &na);  
+    printf("Inserisci le dimensioni della seconda matrice B --> Mat(m,n):\n");
+    printf("Inserisci m di B: \n");
+    scanf("%d", &mb);
+    printf("Inserisci n di B: \n"); 
+    scanf("%d", &nb);
+    if (ma<0 || na<0 || mb<0 || nb<0 || ma!=mb || na!=nb)
+    {
+        printf("Dimensioni delle matrici non adeguate\n");
+        return 0;
+    } 
+    else
+    {
+        m=ma;
+        n=na;
+    }
+    int A[m][n], B[m][n], C[m][n];  
+    printf("Inserisci i valori per la matrice A(%d x %d): \n", m, n);
+    while (j<n) /*incremento j (numero di riga per ultimo)*/                                        /*scan Mat A*/
+    {
+        while (i<m) /*finchè non ho letto tutta la prima riga continua a spostarmi nella colonna a dx*/
+        {
+            scanf("%d", &A[i][j]);
+            i++; /*mi sposto di una colonna a dx*/
+        }
+        j++;/*quando ho finito la riga (i=na) mi sposto nella riga sotto*/ 
+        i=0;/*devo impostare nuovamente i=0 per leggere la prima colonna fino all'ultima*/
+    }
+    i=0;
+    j=0;
+    printf("La matrice A(%d x %d) e':\n", m, n);                                                     /*print Mat A*/
+    while (j<n) /*stampa la matrice A allo stesso modo*/
+    {
+        while (i<m)
+        {
+            printf("%d ", A[i][j]);
+            i++;
+        }
+        j++;
+        i=0;
+        printf("\n"); /*va a capo per formattare la seconda riga sotto la prima*/
+    }
+    printf("Inserisci i valori per la matrice B(%d x %d): \n", m, n);
+    for (j = 0; j < n; j++) /*legge la matrice B con un for (altro metodo)*/                            /*scan Mat B*/
+    {
+        for (i = 0; i < m; i++)
+        {
+            scanf("%d", &B[i][j]);
+        }
+    }
+    printf("La matrice B(%d x %d) e':\n", m, n);                                                    /*print Mat B*/
+    for (j = 0; j < n; j++)
+    {
+        for (i = 0; i < m; i++)
+        {
+            printf("%d ", B[i][j]);
+        }
+        printf("\n");
+    }
+    printf("La matrice somma C(%d x %d) e':\n", m, n);                                              /*printf Mat C*/    
+    for (j = 0; j < n; j++)                                                                           /*sum Mat C*/
+    {
+        for (i = 0; i < m; i++)
+        {
+            C[i][j]=A[i][j]+B[i][j]; /*somma ogni casella alla sua corrispettiva*/
+            printf("%d ", C[i][j]); /*mettere spazio dopo %d per avere uno spazio fra i numeri*/
+        } 
+        printf("\n"); /*stampa \n per allineare correttamente la riga successiva*/
+    }
+}
+if (p==11)
+{
+    printf("Hai scelto programma 11)Programma che moltiplica due matrici\n");
+}
 
-if (p>9 || p<0)
+if (p>11 || p<0)
 {
     printf("programma inesistente");
 }
