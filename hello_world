@@ -324,7 +324,7 @@ if (p==11)
 /*programma 12 esercizio 2 laboratorio 02*/
 if (p==12)
 {
-    #define DURATA 4
+    #define DURATA 7
     printf("Hai scelto esercizio 12)Programma che stampa l'istogramma delle temperature corporee\n");
     float T[7], tmin=34.0f, max=0.0f, min=0.0f, med;
     int i/*temperatura i-esima*/, g/*giorno g-esimo*/, n/*numero di asterisco*/, t, tminint=34;
