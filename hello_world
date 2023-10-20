@@ -15,6 +15,7 @@ int main (){
     printf("                9)Programma che inverte una serie di valori\n");
     printf("                10)Programma per sommare due matrici di dimensioni e valori dati\n");
     printf("                11)Programma che moltiplica due matrici di dimensioni e valori dati\n");
+    printf("                12)Programma che stampa un istogramma delle temperature corporee degli ultimi giorni\n");
     printf("\n                  ^^^^ Scegliere un programma ^^^^\n");
     scanf("%d", &p);
 /*programma 1 potenze del due fino all'overflow*/
@@ -305,8 +306,8 @@ if (p==10)
         }
         printf("\n");
     }
-    printf("La matrice somma C(%d x %d) e':\n", m, n);                                              /*printf Mat C*/    
-    for (j = 0; j < n; j++)                                                                           /*sum Mat C*/
+    printf("La matrice somma C(%d x %d) e': [%d", m, n, C[0]);                                              /*printf Mat C*/    
+    for (j = 1; j < n; j++)                                                                           /*sum Mat C*/
     {
         for (i = 0; i < m; i++)
         {
@@ -320,8 +321,55 @@ if (p==11)
 {
     printf("Hai scelto programma 11)Programma che moltiplica due matrici\n");
 }
+/*programma 12 esercizio 2 laboratorio 02*/
+if (p==12)
+{
+    #define DURATA 4
+    printf("Hai scelto esercizio 12)Programma che stampa l'istogramma delle temperature corporee\n");
+    float T[7], tmin=34.0f, max=0.0f, min=0.0f, med;
+    int i/*temperatura i-esima*/, g/*giorno g-esimo*/, n/*numero di asterisco*/, t, tminint=34;
+    printf("Scrivi le temperature raccolte\n");
+    for (g = 1; g <= DURATA; g++) /*parto da 1 per raccogliere le cifre senza il giorno 0*/
+    {
+        scanf("%f", &T[g]); /*scannerizza le temperature come float*/
+    }
+    printf("\nGiorno Valore Istogramma\n");                 /*array letto*/
+    for (g = 1; g <= DURATA; g++) /*parto sempre da 1 per non utilizzare la prima casella array*/
+    {   
+        printf("%d ", g);   /*stampo il giorno corrente*/    
+        printf("%.1f ", T[g]);/*stampo la temperatura del giorno corrente*/
+        if (T[g]>tmin) /*se la temperatura è maggiore del giorno corrente allora stampo gli asterisco*/
+        {
+            t=T[g]; /*assegno un valore int alla temperatura*/
+            n=t%tminint; /*calcolo quanti asterisco devo stampare*/
+            for (i = 0; i < n; i++) /*stampo il numero di asterisco*/
+            {
+                printf("*");
+            }
+        }   
+        printf("\n"); /*vado a capo per il giorno successivo*/
+    }
+    max=T[1];                                           /*max min e media*/
+    min=T[1];
+    for (i = 1; i <= DURATA; i++) /*parto sempre da 1*/
+    {
+        if (T[i]>max)
+        {
+            max=T[i];
+        }
+        if (T[i]<min)
+        {
+            min=T[i];
+        }
+        med+=T[i];
+    }
+    printf("Il max e': %.1f\n", max);
+    printf("Il min e': %.1f\n", min);
+    med/=DURATA;
+    printf("La media e': %.2f", med); 
+}
 
-if (p>11 || p<0)
+if (p>12 || p<0)
 {
     printf("programma inesistente");
 }
