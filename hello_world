@@ -16,6 +16,7 @@ int main (){
     printf("                10)Programma per sommare due matrici di dimensioni e valori dati\n");
     printf("                11)Programma che moltiplica due matrici di dimensioni e valori dati\n");
     printf("                12)Programma che stampa un istogramma delle temperature corporee degli ultimi giorni\n");
+    printf("                13)Programma che stampa l'istogramma delle temperature corporee ma verticale\n");
     printf("\n                  ^^^^ Scegliere un programma ^^^^\n");
     scanf("%d", &p);
 /*programma 1 potenze del due fino all'overflow*/
@@ -324,7 +325,7 @@ if (p==11)
 /*programma 12 esercizio 2 laboratorio 02*/
 if (p==12)
 {
-    #define DURATA 7
+    #define DURATA 4
     printf("Hai scelto esercizio 12)Programma che stampa l'istogramma delle temperature corporee\n");
     float T[7], tmin=34.0f, max=0.0f, min=0.0f, med;
     int i/*temperatura i-esima*/, g/*giorno g-esimo*/, n/*numero di asterisco*/, t, tminint=34;
@@ -368,8 +369,56 @@ if (p==12)
     med/=DURATA;
     printf("La media e': %.2f", med); 
 }
+if (p==13)
+{
+    #define DURATA 4
+    printf("Hai scelto esercizio 13)Programma che stampa l'istogramma delle temperature corporee\n");
+    float T[7], tmin=34.0f, max=0.0f, min=0.0f, med;
+    int i/*riga output i-esima*/, g/*giorno g-esimo*/, n/*numero di asterisco*/, t, tminint=34;
+    printf("Scrivi le temperature raccolte\n");
+    for (g = 1; g <= DURATA; g++) /*parto da 1 per raccogliere le cifre senza il giorno 0*/
+    {
+        scanf("%f", &T[g]); /*scannerizza le temperature come float*/
+        if (g==1)
+        {
+            max=T[g];
+            min=T[g];
+        } 
+        if (T[g]>max)
+        {
+            max=T[g];  /*calcolo il numero massimo di asterisco in float (è la temperatura più alta)(sarà la lunghezza dell'output)*/
+            t=T[g]; /*approssimo T[g] a un intero*/
+            n=t%tminint; /*calcolo il numero massimo di asterisco int*/
+        }
+        if (T[g]<min)
+        {
+            min=T[g];
+        }
+        med+=T[g];
+    }
+    med/=DURATA;
+    printf("max %.1f, min %.1f, med %.1f\n\n", max, min, med);
+    while (n>0) /*parto dalla prima riga e decresco fino a finirle*/
+    {
+        for (g = 1; g <= DURATA; g++)
+        {   
+            t=T[g]; /*assegna a t l'intero della temperatura appossimato*/
+            if (t%tminint>=n) /*se la giornata g ha T[g]%tminint > n allora dovrò stampare un * */
+            {
+                printf(" *   ");
+            }
+            else printf("     "); /*altrimenti significa che la temperatura è minore del numero di asterisco a cui sono arrivato e stamperò spazio vuoto*/
+        }
+        printf("\n");
+        n--; /*passo alla riga sottostante*/
+    }
+    for (g = 1; g <= DURATA; g++) /*stampo le temperature sotto, forse si può unire al cilo for di prima*/
+    {
+        printf("%.1f ", T[g]);
+    }   
+}
 
-if (p>12 || p<0)
+if (p>13 || p<0)
 {
     printf("programma inesistente");
 }
