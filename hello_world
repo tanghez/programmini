@@ -17,6 +17,7 @@ int main (){
     printf("                11)Programma che moltiplica due matrici di dimensioni e valori dati\n");
     printf("                12)Programma che stampa un istogramma delle temperature corporee degli ultimi giorni\n");
     printf("                13)Programma che stampa l'istogramma delle temperature corporee ma verticale\n");
+    printf("                14)Programma che calcola max min e med di una serie di valori con -end (anche decimali)");
     printf("\n                  ^^^^ Scegliere un programma ^^^^\n");
     scanf("%d", &p);
 /*programma 1 potenze del due fino all'overflow*/
@@ -142,19 +143,19 @@ if (p==7)
     int numeri[100], i, count, max, min;
     float med=0.0f;
     char response='a';
-    printf("Inserisci i valori, inserisci -1 per terminare\n");
+    printf("<< Inserisci i valori, inserisci -1 per terminare >>\n");
     for (i = 0; response!='Y' && response!='y'; i++)
     {
         if (response=='n' || response=='N') /*scrive un messaggio in caso abbiamo scelto di considerare il -1*/
         {
-            printf("Continua a inserire i valori:\n");
+            printf("<< Continua a inserire i valori: >>\n");
             response='a'; /*resetta la risposta ad 'a' per evitare che ripeta il messaggio*/
         } 
         count=i; /*assegna al contatore il numero di cifre al momento inserite (azzererò i successivamente)*/
         scanf(" %d", &numeri[i]); /*scannerizza l'iesimo numero e lo assegna alla iesima casella dell'array*/
         if (numeri[i]==-1) /*se il valore della iesima casella è -1 chiede se voglio terminare*/
         {
-            printf("Scrivi Y per terminare / N per considerare questo -1\n");
+            printf("<< Scrivi Y per terminare / N per considerare questo -1 >>\n");
             scanf(" %c", &response); /*leggo la risposta e la assegno alla variabile char response*/
         } 
     }
@@ -173,7 +174,7 @@ if (p==7)
         med+=numeri[i]; /*a ogni ciclo aggiunge la cifra iesima alle precedenti*/     
     }
     med/=count; /*divide la somma di tutte le cifre per il numero di cifre da considerare*/
-    printf("il max e': %d, il min e': %d, la media e': %.1f", max, min, med);
+    printf("<< Il max e': %d, il min e': %d, la media e': %.1f >>", max, min, med);
     
     
 } 
@@ -428,8 +429,46 @@ if (p==13)
         printf("%.1f ", T[g]);
     }   
 }
-
-if (p>13 || p<0)
+if (p==14)
+{
+    printf("Hai scelto programma 14)Programma che calcola max min e med di una serie di valori con -end (anche decimali)\n");
+    int count=0;
+    float max, min, med=0, numero;
+    char var[100]="\0";
+    printf("<< Inserisci i valori, scrivi end per terminare: >>\n");
+    while (strcmp(var, "\0") == 0)
+    {
+        scanf("%s", var);
+        if (strcmp(var, "end") == 0 || strcmp(var, "END") == 0)
+        {
+            med/=count;
+            printf("<< Il max è %.2f, il min è %.2f la med è %.2f >>", max, min, med);
+        }
+        else 
+        {
+            sscanf(var, "%f", &numero);
+            if (count==0)
+            {
+                max=numero;
+                min=numero;
+            }
+            if (numero>max)
+            {
+                max=numero;
+            }
+            if (numero<min)
+            {
+                min=numero;
+            }
+            med+=numero;
+            var[0]='\0';       
+        }
+        count++;
+        
+    }
+    
+}
+if (p>14 || p<0)
 {
     printf("programma inesistente");
 }
