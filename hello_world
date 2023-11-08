@@ -17,7 +17,8 @@ int main (){
     printf("                11)Programma che moltiplica due matrici di dimensioni e valori dati\n");
     printf("                12)Programma che stampa un istogramma delle temperature corporee degli ultimi giorni\n");
     printf("                13)Programma che stampa l'istogramma delle temperature corporee ma verticale\n");
-    printf("                14)Programma che calcola max min e med di una serie di valori con -end (anche decimali)");
+    printf("                14)Programma che calcola max min e med di una serie di valori con -end (anche decimali)\n");
+    printf("                15)Programma che calcola gli zeri di una funzione strettamente monotona con media frazionaria\n");
     printf("\n                  ^^^^ Scegliere un programma ^^^^\n");
     scanf("%d", &p);
 /*programma 1 potenze del due fino all'overflow*/
@@ -468,9 +469,72 @@ if (p==14)
     }
     
 }
-if (p>14 || p<0)
+if (p==15)
+{
+    printf("Hai scelto programma 15)Programma che calcola gli zeri di una funzione strettamente monotona con media frazionaria\n");
+    int i=0, count;
+    float a, b, min, max, test, x, y, appr, e=2.7182818284;
+    printf("Inserisci il valore minimo e massimo da cui partire:\n");
+    scanf("%f %f", &min, &max);
+    if (min*max>=0)
+    {
+        printf("I valori sono concordi, se la funzione è strettamente monotona non esistono zeri nell'intervallo [a,b]\n");
+        return 0;
+    }
+    /*inserire la funzione qui sotto in variabile min*/
+    test=9*pow(min,3)+pow(e,min);
+    if (test<0)
+    {
+        a=min;
+        b=max;
+    } else
+    {
+        a=max;
+        b=min;
+    }                                                                  
+    printf("Inserisci l'approssimazione a cui vuoi arrivare (inserisci 0 per non considerare)\n");
+    scanf("%f", &appr);
+    printf("Inserisci il numero di cicli da effettuare al massimo\n");
+    scanf("%d", &count);
+    printf("Ciclo n %d soluzione contenuta in [ %f , %f ]\n", i, a, b);
+    i++;
+    do
+    {
+        x=(a+b)/2;
+        /*inserire la funzione qui sotto in variabile x*/
+        y=9*pow(x,3)+pow(e,x);                                                                /*(3*c+3*/
+        if (y==0)
+        {
+            printf("Trovata la soluzione: %f al %d° ciclo\n", x, i);
+            return 1;
+        }
+        else if (y<0)
+        {
+            a=x;
+        }
+        else if (y>0)
+        {
+            b=x;
+        } 
+        printf("Ciclo n %d soluzione contenuta in [ %f , %f ]\n", i, a, b);   
+        i++;
+    } while ((y > appr || y < -appr) && i < count);
+
+    if (y < appr && y > -appr && y!=0)
+    {
+        printf("Approssimazione richiesta raggiunta: la soluzione è contenuta in [ %f , %f ]\n", a, b);
+    }
+    else if (y!=0)
+    {
+        printf("Massimo numero di cicli raggiunti: la soluzione è contenuta in [ %f , %f ]\n", a, b);
+    }   
+
+}
+
+if (p>15 || p<0)
 {
     printf("programma inesistente");
+    return 0;
 }
 Sleep (500);
 }
